@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "abridged:canyon_bridge",
+      "weight": 5
+    },
+    {
+      "structure": "abridged:creek_bridge",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 930457394,
+    "spacing": 5,
+    "separation": 2
+  }
+}

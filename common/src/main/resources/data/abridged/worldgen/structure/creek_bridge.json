@@ -1,0 +1,186 @@
+{
+  "type": "abridged:bridge",
+  "biomes": "#abridged:has_bridges",
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
+  "spawn_overrides": {},
+  "height": [
+    63,
+    66
+  ],
+  "max_height_difference": 3,
+  "max_chunk_search_distance": 2,
+  "min_erosion": -0.15,
+  "max_erosion": 0.55,
+  "template_data_entries": [
+    {
+      "weight": 3,
+      "data": {
+        "base": "abridged:creek/oak",
+        "negative_edge": "abridged:creek/oak_negative_edge",
+        "positive_edge": "abridged:creek/oak_positive_edge",
+        "biomes": "#abridged:has_bridge/oak",
+        "processors": "minecraft:empty",
+        "offset": -1
+      }
+    },
+    {
+      "weight": 3,
+      "data": {
+        "base": "abridged:creek/spruce",
+        "negative_edge": "abridged:creek/spruce_negative_edge",
+        "positive_edge": "abridged:creek/spruce_positive_edge",
+        "biomes": "#abridged:has_bridge/spruce",
+        "processors": "minecraft:empty",
+        "offset": -1
+      }
+    },
+    {
+      "weight": 3,
+      "data": {
+        "base": "abridged:creek/birch",
+        "negative_edge": "abridged:creek/birch_negative_edge",
+        "positive_edge": "abridged:creek/birch_positive_edge",
+        "biomes": "#abridged:has_bridge/birch",
+        "processors": "minecraft:empty",
+        "offset": -1
+      }
+    },
+    {
+      "weight": 3,
+      "data": {
+        "base": "abridged:creek/jungle",
+        "negative_edge": "abridged:creek/jungle_negative_edge",
+        "positive_edge": "abridged:creek/jungle_positive_edge",
+        "biomes": "#abridged:has_bridge/jungle",
+        "processors": "minecraft:empty",
+        "offset": -1
+      }
+    },
+    {
+      "weight": 3,
+      "data": {
+        "base": "abridged:creek/sandstone",
+        "negative_edge": "abridged:creek/sandstone_negative_edge",
+        "positive_edge": "abridged:creek/sandstone_positive_edge",
+        "biomes": "#abridged:has_bridge/sandstone",
+        "processors": "abridged:sandstone",
+        "offset": -1
+      }
+    },
+    {
+      "weight": 1,
+      "data": {
+        "base": "abridged:common/stone",
+        "negative_edge": "abridged:common/stone_negative_edge",
+        "positive_edge": "abridged:common/stone_positive_edge",
+        "biomes": "#abridged:has_bridge/stone",
+        "processors": "abridged:stone",
+        "offset": -1
+      }
+    }
+  ],
+  "extensions": [
+    {
+      "blocks": "minecraft:oak_log",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:oak_log",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    },
+    {
+      "blocks": "minecraft:spruce_log",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:spruce_log",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    },
+    {
+      "blocks": "minecraft:stripped_birch_log",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:stripped_birch_log",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    },
+    {
+      "blocks": "minecraft:jungle_log",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:jungle_log",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    },
+    {
+      "blocks": [
+        "minecraft:stone_bricks",
+        "minecraft:mossy_stone_bricks",
+        "minecraft:cracked_stone_bricks"
+      ],
+      "extended_state": {
+        "type": "minecraft:weighted_state_provider",
+        "entries": [
+          {
+            "weight": 3,
+            "data": {
+              "Name": "minecraft:stone_bricks"
+            }
+          },
+          {
+            "weight": 1,
+            "data": {
+              "Name": "minecraft:mossy_stone_bricks"
+            }
+          },
+          {
+            "weight": 1,
+            "data": {
+              "Name": "minecraft:cracked_stone_bricks"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "blocks": [
+        "minecraft:sandstone",
+        "minecraft:smooth_sandstone"
+      ],
+      "extended_state": {
+        "type": "minecraft:weighted_state_provider",
+        "entries": [
+          {
+            "weight": 4,
+            "data": {
+              "Name": "minecraft:smooth_sandstone"
+            }
+          },
+          {
+            "weight": 1,
+            "data": {
+              "Name": "minecraft:sandstone"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

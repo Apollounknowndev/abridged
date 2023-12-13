@@ -1,0 +1,134 @@
+{
+  "type": "abridged:bridge",
+  "biomes": "#abridged:has_bridges",
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin",
+  "spawn_overrides": {},
+  "height": [
+    82,
+    320
+  ],
+  "max_height_difference": 8,
+  "max_chunk_search_distance": 4,
+  "min_erosion": -0.4,
+  "max_erosion": -0.1,
+  "template_data_entries": [
+    {
+      "weight": 3,
+      "data": {
+        "base": "abridged:canyon/pillager_infested",
+        "negative_edge": "abridged:canyon/pillager_infested_negative_edge",
+        "positive_edge": "abridged:canyon/pillager_infested_positive_edge",
+        "biomes": "#abridged:has_bridge/pillager_infested",
+        "processors": "abridged:pillager_infested",
+        "offset": -1
+      }
+    },
+    {
+      "weight": 3,
+      "data": {
+        "base": "abridged:canyon/badlands_mining",
+        "negative_edge": "abridged:canyon/badlands_mining_negative_edge",
+        "positive_edge": "abridged:canyon/badlands_mining_positive_edge",
+        "biomes": "#abridged:has_bridge/badlands_mining",
+        "processors": "abridged:badlands_mining",
+        "offset": -1
+      }
+    },
+    {
+      "weight": 1,
+      "data": {
+        "base": "abridged:common/stone",
+        "negative_edge": "abridged:common/stone_negative_edge",
+        "positive_edge": "abridged:common/stone_positive_edge",
+        "biomes": "#abridged:has_bridge/stone",
+        "processors": "abridged:stone",
+        "offset": -1
+      }
+    }
+  ],
+  "extensions": [
+    {
+      "blocks": "minecraft:stripped_dark_oak_log",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:stripped_dark_oak_log",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    },
+    {
+      "blocks": "minecraft:dark_oak_log",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:dark_oak_log",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    },
+    {
+      "blocks": [
+        "minecraft:stone_bricks",
+        "minecraft:mossy_stone_bricks",
+        "minecraft:cracked_stone_bricks"
+      ],
+      "extended_state": {
+        "type": "abridged:gradient",
+        "start_y": 64,
+        "end_y": 72,
+        "upper": {
+          "type": "minecraft:weighted_state_provider",
+          "entries": [
+            {
+              "weight": 5,
+              "data": {
+                "Name": "minecraft:stone_bricks"
+              }
+            },
+            {
+              "weight": 1,
+              "data": {
+                "Name": "minecraft:cracked_stone_bricks"
+              }
+            }
+          ]
+        },
+        "lower": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:mossy_stone_bricks"
+          }
+        }
+      }
+    },
+    {
+      "blocks": [
+        "minecraft:deepslate_bricks",
+        "minecraft:cracked_deepslate_bricks"
+      ],
+      "extended_state": {
+        "type": "minecraft:weighted_state_provider",
+        "entries": [
+          {
+            "weight": 3,
+            "data": {
+              "Name": "minecraft:deepslate_bricks"
+            }
+          },
+          {
+            "weight": 1,
+            "data": {
+              "Name": "minecraft:cracked_deepslate_bricks"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
