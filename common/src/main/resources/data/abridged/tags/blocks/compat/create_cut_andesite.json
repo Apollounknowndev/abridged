@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "create:cut_andesite_bricks",
+      "required": false
+    },
+    {
+      "id": "create:polished_cut_andesite",
+      "required": false
+    },
+    {
+      "id": "create:cut_andesite",
+      "required": false
+    }
+  ]
+}

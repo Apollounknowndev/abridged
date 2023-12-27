@@ -2,6 +2,8 @@ package dev.worldgen.abridged.worldgen.structure;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.worldgen.abridged.config.ConfigHandler;
+import dev.worldgen.abridged.platform.Services;
 import dev.worldgen.abridged.registry.AbridgedRegistries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,6 +36,7 @@ import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -97,20 +100,21 @@ public class BridgeStructure extends Structure {
     }
 
     @Override
-    public Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
+    public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
         BridgeData bridgeData = getBridgeData(context);
         if (bridgeData == null) return Optional.empty();
 
         BlockPos pos = new BlockPos(context.chunkPos().getMiddleBlockX(), bridgeData.getHeight(), context.chunkPos().getMiddleBlockZ());
         var nearbyBiomes = context.biomeSource().getBiomesWithin(pos.getX(), pos.getY(), pos.getZ(), this.maxChunkSearchDistance*4, context.randomState().sampler());
         Optional<TemplateData> templateData = getRandomTemplateData(nearbyBiomes, context.random());
-        return templateData.isEmpty() ? Optional.empty() : onTopOfChunkCenter(context, Heightmap.Types.OCEAN_FLOOR_WG, (collector) -> addPieces(collector, context, pos, bridgeData, templateData.get()));
+        return templateData.flatMap(data -> onTopOfChunkCenter(context, Heightmap.Types.OCEAN_FLOOR_WG, (collector) -> addPieces(collector, context, pos, bridgeData, data)));
     }
-    private void addPieces(StructurePiecesBuilder collector, Structure.GenerationContext context, BlockPos pos, BridgeData bridgeData, TemplateData templateData) {
+    private void addPieces(StructurePiecesBuilder collector, GenerationContext context, BlockPos pos, BridgeData bridgeData, TemplateData templateData) {
         BridgePieces.addPieces(context.structureTemplateManager(), pos, collector, bridgeData, templateData);
     }
 
-    private BridgeData getBridgeData(Structure.GenerationContext context) {
+    private BridgeData getBridgeData(GenerationContext context) {
+        if (ConfigHandler.getConfig().frequency() != 1.0F && context.random().nextFloat() > ConfigHandler.getConfig().frequency()) return null;
         BlockPos pos = new BlockPos(context.chunkPos().getMiddleBlockX(), 90, context.chunkPos().getMiddleBlockZ());
         double erosion = context.randomState().router().erosion().compute(new DensityFunction.SinglePointContext(pos.getX(), pos.getY(), pos.getZ()));
         if (erosion < minErosion || erosion > maxErosion || getHeightmap(pos, context) > 60) return null;
@@ -119,7 +123,7 @@ public class BridgeStructure extends Structure {
         return xBridgeData != null ? xBridgeData : findValidSegmentLayout(context, pos, Direction.SOUTH);
     }
 
-    private BridgeData findValidSegmentLayout(Structure.GenerationContext context, BlockPos pos, Direction direction) {
+    private BridgeData findValidSegmentLayout(GenerationContext context, BlockPos pos, Direction direction) {
         List<Integer> leftHeights = buildHeightmapList(context, pos, direction.getOpposite());
         List<Integer> rightHeights = buildHeightmapList(context, pos, direction);
         if (leftHeights == null || rightHeights == null) return null;
@@ -153,7 +157,7 @@ public class BridgeStructure extends Structure {
         return new BridgeData(negativeHeight, positiveHeight, chunkOffset, totalSegments, direction);
     }
 
-    private List<Integer> buildHeightmapList(Structure.GenerationContext context, BlockPos pos, Direction direction) {
+    private List<Integer> buildHeightmapList(GenerationContext context, BlockPos pos, Direction direction) {
         List<Integer> heights = new ArrayList<>();
         for(int j = 1; j <= this.maxChunkSearchDistance; j++) {
             int height = getHeightmap(pos.relative(direction, 16*j), context);
@@ -170,13 +174,13 @@ public class BridgeStructure extends Structure {
     }
 
     private Optional<TemplateData> getRandomTemplateData(Set<Holder<Biome>> nearbyBiomes, RandomSource random) {
-        var validEntries = SimpleWeightedRandomList.create(this.templateDataEntries.unwrap().stream().filter(entry -> nearbyBiomes.stream().anyMatch(entry.getData().biomes()::contains)).toList());
+        var validEntries = SimpleWeightedRandomList.create(this.templateDataEntries.unwrap().stream().filter(entry -> entry.getData().isValid(nearbyBiomes)).toList());
         Optional<WeightedEntry.Wrapper<TemplateData>> templateCandidate = validEntries.getRandom(random);
         return templateCandidate.map(WeightedEntry.Wrapper::getData);
     }
 
 
-    private static int getHeightmap(BlockPos pos, Structure.GenerationContext context) {
+    private static int getHeightmap(BlockPos pos, GenerationContext context) {
         return context.chunkGenerator().getFirstFreeHeight(pos.getX(), pos.getZ(), Heightmap.Types.OCEAN_FLOOR_WG, context.heightAccessor(), context.randomState());
     }
 
@@ -223,19 +227,24 @@ public class BridgeStructure extends Structure {
         }
     }
 
-    public record TemplateData(ResourceLocation base, ResourceLocation negativeEdge, ResourceLocation positiveEdge, Holder<StructureProcessorList> processorList, HolderSet<Biome> biomes, Integer offset) {
+    public record TemplateData(ResourceLocation base, ResourceLocation negativeEdge, ResourceLocation positiveEdge, Holder<StructureProcessorList> processorList, HolderSet<Biome> biomes, Integer offset, List<String> requiredMods) {
         public static final Codec<TemplateData> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ResourceLocation.CODEC.fieldOf("base").forGetter(TemplateData::base),
             ResourceLocation.CODEC.fieldOf("negative_edge").forGetter(TemplateData::negativeEdge),
             ResourceLocation.CODEC.fieldOf("positive_edge").forGetter(TemplateData::positiveEdge),
             StructureProcessorType.LIST_CODEC.fieldOf("processors").forGetter(TemplateData::processorList),
             Biome.LIST_CODEC.fieldOf("biomes").forGetter(TemplateData::biomes),
-            Codec.INT.fieldOf("offset").orElse(0).forGetter(TemplateData::offset)
+            Codec.INT.fieldOf("offset").orElse(0).forGetter(TemplateData::offset),
+            Codec.STRING.listOf().fieldOf("required_mods").orElse(List.of()).forGetter(TemplateData::requiredMods)
         ).apply(instance, TemplateData::new));
 
         public ResourceLocation getProcessorId() {
             Optional<ResourceKey<StructureProcessorList>> key = processorList().unwrapKey();
-            return key.isEmpty() ? new ResourceLocation("empty") : key.get().location();
+            return key.map(ResourceKey::location).orElseGet(() -> new ResourceLocation("empty"));
+        }
+
+        public boolean isValid(Set<Holder<Biome>> nearbyBiomes) {
+            return nearbyBiomes.stream().anyMatch(biomes::contains) && requiredMods.stream().allMatch(Services.PLATFORM::isModLoaded);
         }
     }
 

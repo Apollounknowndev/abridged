@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "create:cut_tuff_bricks",
+      "required": false
+    },
+    {
+      "id": "create:polished_cut_tuff",
+      "required": false
+    },
+    {
+      "id": "create:cut_tuff",
+      "required": false
+    }
+  ]
+}

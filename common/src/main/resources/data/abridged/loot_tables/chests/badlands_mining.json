@@ -4,6 +4,10 @@
       "rolls": 1,
       "entries": [
         {
+          "type": "minecraft:loot_table",
+          "name": "minecraft:anvil"
+        },
+        {
           "type": "minecraft:item",
           "weight": 2,
           "name": "minecraft:iron_pickaxe",
@@ -244,6 +248,30 @@
             {
               "function": "minecraft:set_count",
               "count": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:tag",
+          "weight": 3,
+          "name": "abridged:compat/bomb",
+          "expand": false,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
             }
           ]
         }

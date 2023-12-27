@@ -8,8 +8,8 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://fabricmc.net/",
-        "sources": "https://github.com/FabricMC/fabric-example-mod"
+        "homepage": "https://modrinth.com/mod/abridged",
+        "sources": "https://github.com/CelestiumMC/abridged"
     },
     "license": "${license}",
     "icon": "assets/modid/${mod_id}.png",
@@ -25,8 +25,8 @@
     "accessWidener": "abridged.accesswidener",
     "depends": {
         "fabricloader": ">=0.14",
-        "fabric": "*",
-        "minecraft": "1.20.1",
+        "fabric-api": "*",
+        "minecraft": "1.20.x",
         "java": ">=17"
     },
     "suggests": {

@@ -192,6 +192,21 @@
           ]
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:tag",
+          "weight": 3,
+          "expand": false,
+          "name": "abridged:compat/quiver"
+        }
+      ]
     }
   ],
   "random_sequence": "abridged:chests/pillager_bridge"

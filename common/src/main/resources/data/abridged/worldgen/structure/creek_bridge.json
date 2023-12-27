@@ -78,6 +78,34 @@
         "processors": "abridged:stone",
         "offset": -1
       }
+    },
+    {
+      "weight": 1,
+      "data": {
+        "base": "abridged:compat/create/cut_andesite",
+        "negative_edge": "abridged:compat/create/cut_andesite_negative_edge",
+        "positive_edge": "abridged:compat/create/cut_andesite_positive_edge",
+        "biomes": "#abridged:has_bridge/stone",
+        "processors": "abridged:compat/create/cut_andesite",
+        "offset": -1,
+        "required_mods": [
+          "create"
+        ]
+      }
+    },
+    {
+      "weight": 1,
+      "data": {
+        "base": "abridged:compat/create/cut_tuff",
+        "negative_edge": "abridged:compat/create/cut_tuff_negative_edge",
+        "positive_edge": "abridged:compat/create/cut_tuff_positive_edge",
+        "biomes": "#abridged:has_bridge/stone",
+        "processors": "abridged:compat/create/cut_tuff",
+        "offset": -1,
+        "required_mods": [
+          "create"
+        ]
+      }
     }
   ],
   "extensions": [
@@ -157,6 +185,30 @@
             }
           }
         ]
+      }
+    },
+    {
+      "blocks": "#abridged:compat/create_cut_andesite",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "create:andesite_pillar",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    },
+    {
+      "blocks": "#abridged:compat/create_cut_tuff",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "create:tuff_pillar",
+          "Properties": {
+            "axis": "y"
+          }
+        }
       }
     },
     {
