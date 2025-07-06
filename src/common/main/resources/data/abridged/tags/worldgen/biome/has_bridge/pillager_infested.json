@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:is_taiga",
+      "required": false
+    },
+    {
+      "id": "#c:primary_wood_type/dark_oak",
+      "required": false
+    }
+  ]
+}

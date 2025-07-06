@@ -1,0 +1,26 @@
+{
+  "type": "lithostitched:delegating",
+  "delegate": {
+    "type": "abridged:bridge",
+    "biomes": "#abridged:has_bridges",
+    "step": "surface_structures",
+    "terrain_adaptation": "beard_thin",
+    "spawn_overrides": {},
+    "max_chunk_radius": 4
+  },
+  "spawn_condition": {
+    "type": "lithostitched:grid",
+    "condition": {
+      "type": "lithostitched:height_filter",
+      "range_type": "absolute",
+      "heightmap": "OCEAN_FLOOR_WG",
+      "permitted_range": [
+        0,
+        61
+      ]
+    },
+    "radius": 3,
+    "distance_between_points": 6,
+    "allowed_count": 4
+  }
+}

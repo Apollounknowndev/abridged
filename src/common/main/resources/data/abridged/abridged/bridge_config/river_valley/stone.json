@@ -1,0 +1,75 @@
+{
+  "condition": {
+    "type": "lithostitched:all_of",
+    "conditions": [
+      {
+        "type": "lithostitched:sample_noise_router",
+        "target": "erosion",
+        "min_inclusive": -0.15,
+        "max_inclusive": 0.15
+      },
+      {
+        "type": "lithostitched:grid",
+        "condition": {
+          "type": "lithostitched:in_biome",
+          "biomes": "#abridged:has_bridge/stone"
+        },
+        "radius": 48,
+        "distance_between_points": 96,
+        "allowed_count": [1,4]
+      }
+    ]
+  },
+  "height": [
+    82,
+    320
+  ],
+  "max_height_difference": 10,
+  "segments": [3,9],
+  "base_template": [
+    "abridged:stone/base",
+    "abridged:stone/base",
+    "abridged:stone/base",
+    "abridged:stone/base",
+    "abridged:stone/base_decayed1",
+    "abridged:stone/base_decayed2"
+  ],
+  "edge_template": "abridged:stone/edge",
+  "processors": "abridged:stone",
+  "extensions": [
+    {
+      "blocks": [
+        "minecraft:stone_bricks",
+        "minecraft:cracked_stone_bricks"
+      ],
+      "extended_state": {
+        "type": "abridged:gradient",
+        "start_y": 62,
+        "end_y": 68,
+        "upper": {
+          "type": "minecraft:weighted_state_provider",
+          "entries": [
+            {
+              "weight": 5,
+              "data": {
+                "Name": "minecraft:stone_bricks"
+              }
+            },
+            {
+              "weight": 1,
+              "data": {
+                "Name": "minecraft:cracked_stone_bricks"
+              }
+            }
+          ]
+        },
+        "lower": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:mossy_stone_bricks"
+          }
+        }
+      }
+    }
+  ]
+}
