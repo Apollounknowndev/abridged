@@ -1,0 +1,46 @@
+{
+  "condition": {
+    "type": "lithostitched:all_of",
+    "conditions": [
+      {
+        "type": "lithostitched:sample_noise_router",
+        "target": "erosion",
+        "min_inclusive": -0.1,
+        "max_inclusive": 0.5
+      },
+      {
+        "type": "lithostitched:grid",
+        "condition": {
+          "type": "lithostitched:in_biome",
+          "biomes": "#abridged:has_bridge/birch"
+        },
+        "radius": 48,
+        "distance_between_points": 96,
+        "allowed_count": [1,4]
+      }
+    ]
+  },
+  "height": [
+    64,
+    68
+  ],
+  "max_height_difference": 3,
+  "segments": [2,3],
+  "base_template": "abridged:birch/base",
+  "edge_template": "abridged:birch/edge",
+  "processors": "minecraft:empty",
+  "extensions": [
+    {
+      "blocks": "minecraft:stripped_birch_log",
+      "extended_state": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:stripped_birch_log",
+          "Properties": {
+            "axis": "y"
+          }
+        }
+      }
+    }
+  ]
+}

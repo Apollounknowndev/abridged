@@ -1,0 +1,19 @@
+{
+  "structures": [
+    {
+      "structure": "abridged:bridge",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 930457394,
+    "spacing": 4,
+    "separation": 2,
+    "locate_offset": [
+      8,
+      0,
+      8
+    ]
+  }
+}

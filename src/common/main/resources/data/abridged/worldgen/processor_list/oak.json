@@ -1,0 +1,114 @@
+{
+  "processors": [
+    {
+      "processor_type": "lithostitched:condition",
+      "if_true": {
+        "type": "lithostitched:random_chance",
+        "chance": 0.15
+      },
+      "then": [
+        {
+          "processor_type": "lithostitched:condition",
+          "if_true": {
+            "type": "lithostitched:matching_blocks",
+            "blocks": "minecraft:oak_slab",
+            "properties": {
+              "type": "top"
+            }
+          },
+          "then": {
+            "processor_type": "lithostitched:set_block",
+            "preserve_state": false,
+            "state_provider": {
+              "type": "minecraft:simple_state_provider",
+              "state": {
+                "Name": "minecraft:oak_trapdoor",
+                "Properties": {
+                  "half": "top"
+                }
+              }
+            }
+          }
+        },
+        {
+          "processor_type": "lithostitched:condition",
+          "if_true": {
+            "type": "lithostitched:matching_blocks",
+            "blocks": "minecraft:spruce_slab",
+            "properties": {
+              "type": "top"
+            }
+          },
+          "then": {
+            "processor_type": "lithostitched:set_block",
+            "preserve_state": false,
+            "state_provider": {
+              "type": "minecraft:weighted_state_provider",
+              "entries": [
+                {
+                  "weight": 1,
+                  "data": {
+                    "Name": "minecraft:spruce_trapdoor",
+                    "Properties": {
+                      "half": "top",
+                      "facing": "north"
+                    }
+                  }
+                },
+                {
+                  "weight": 1,
+                  "data": {
+                    "Name": "minecraft:spruce_trapdoor",
+                    "Properties": {
+                      "half": "top",
+                      "facing": "west"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "processor_type": "lithostitched:condition",
+          "if_true": {
+            "type": "lithostitched:matching_blocks",
+            "blocks": "minecraft:spruce_slab",
+            "properties": {
+              "type": "bottom"
+            }
+          },
+          "then": {
+            "processor_type": "lithostitched:set_block",
+            "preserve_state": false,
+            "state_provider": {
+              "type": "minecraft:weighted_state_provider",
+              "entries": [
+                {
+                  "weight": 1,
+                  "data": {
+                    "Name": "minecraft:spruce_trapdoor",
+                    "Properties": {
+                      "half": "bottom",
+                      "facing": "north"
+                    }
+                  }
+                },
+                {
+                  "weight": 1,
+                  "data": {
+                    "Name": "minecraft:spruce_trapdoor",
+                    "Properties": {
+                      "half": "bottom",
+                      "facing": "west"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

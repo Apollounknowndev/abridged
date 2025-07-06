@@ -1,0 +1,70 @@
+{
+  "processors": [
+    {
+      "processor_type": "lithostitched:condition",
+      "if_true": {
+        "type": "lithostitched:random_chance",
+        "chance": 0.5
+      },
+      "then": {
+        "processor_type": "lithostitched:block_swap",
+        "blocks": {
+          "minecraft:infested_stone_bricks": "minecraft:air",
+          "minecraft:infested_cobblestone": "minecraft:air"
+        }
+      },
+      "else": {
+        "processor_type": "lithostitched:block_swap",
+        "blocks": {
+          "minecraft:infested_stone_bricks": "minecraft:tuff_bricks",
+          "minecraft:infested_cobblestone": "minecraft:tuff"
+        }
+      }
+    },
+    {
+      "processor_type": "lithostitched:block_swap",
+      "blocks": {
+        "minecraft:chiseled_stone_bricks": "minecraft:chiseled_tuff_bricks",
+        "minecraft:stone_bricks": "minecraft:tuff_bricks",
+        "minecraft:stone_brick_stairs": "minecraft:tuff_brick_stairs",
+        "minecraft:stone_brick_slab": "minecraft:tuff_brick_slab",
+        "minecraft:andesite_wall": "minecraft:tuff_brick_wall",
+        "minecraft:cobblestone_stairs": "minecraft:tuff_stairs"
+      }
+    },
+    {
+      "processor_type": "lithostitched:condition",
+      "if_true": {
+        "type": "lithostitched:matching_blocks",
+        "blocks": "minecraft:cobblestone"
+      },
+      "then": {
+        "processor_type": "lithostitched:set_block",
+        "preserve_state": false,
+        "state_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "minecraft:tuff_slab",
+            "Properties": {
+              "type": "double"
+            }
+          }
+        }
+      }
+    },
+    {
+      "processor_type": "lithostitched:condition",
+      "if_true": {
+        "type": "lithostitched:random_chance",
+        "chance": 0.15
+      },
+      "then": {
+        "processor_type": "lithostitched:block_swap",
+        "blocks": {
+          "minecraft:tuff_slab": "minecraft:polished_tuff",
+          "minecraft:tuff_stairs": "minecraft:polished_tuff_stairs"
+        }
+      }
+    }
+  ]
+}
