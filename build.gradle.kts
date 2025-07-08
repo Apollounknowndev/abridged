@@ -41,7 +41,7 @@ cloche {
     common {
         dependencies {
             compileOnly("org.spongepowered:mixin:0.8.3")
-            compileOnly("maven.modrinth:lithostitched:1.4.10-forge-1.20")
+            compileOnly("maven.modrinth:lithostitched:1.4.11-forge-1.20")
         }
     }
     val shared120 = common("shared:1.20") {}
@@ -57,7 +57,7 @@ cloche {
 
         dependencies {
             fabricApi("0.92.6")
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.10-fabric-1.20")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-fabric-1.20")
         }
 
         includedClient()
@@ -91,7 +91,7 @@ cloche {
 
         dependencies {
             fabricApi("0.116.1")
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.10-fabric-1.21")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-fabric-1.21")
         }
 
         includedClient()
@@ -124,7 +124,7 @@ cloche {
 
         dependencies {
             fabricApi("0.128.1")
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.10-fabric-1.21.6")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-fabric-1.21.6")
         }
 
         includedClient()
@@ -153,10 +153,9 @@ cloche {
 
         loaderVersion = "47.4.0"
         minecraftVersion = "1.20.1"
-        mixins.from(file("src/common/main/abridged.mixins.json"))
 
         dependencies {
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.10-forge-1.20")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-forge-1.20")
         }
 
         runs {
@@ -169,6 +168,7 @@ cloche {
                 dependency {
                     modId = "lithostitched"
                     required = true
+                    version("1.4.10")
                 }
             }
         }
@@ -179,10 +179,9 @@ cloche {
 
         loaderVersion = "21.1.26"
         minecraftVersion = "1.21.1"
-        mixins.from(file("src/common/main/abridged.mixins.json"))
 
         dependencies {
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.10-neoforge-1.21")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-neoforge-1.21")
         }
 
         runs {
@@ -195,6 +194,7 @@ cloche {
                 dependency {
                     modId = "lithostitched"
                     required = true
+                    version("1.4.10")
                 }
             }
         }
@@ -207,7 +207,7 @@ cloche {
         minecraftVersion = "1.21.7"
 
         dependencies {
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.10-neoforge-1.21.6")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-neoforge-1.21.6")
         }
 
         runs {
@@ -220,6 +220,7 @@ cloche {
                 dependency {
                     modId = "lithostitched"
                     required = true
+                    version("1.4.10")
                 }
             }
         }
