@@ -6,21 +6,16 @@ import json
 
 MOD_ID = "abridged"
 MOD_VERSION = "2.0.0"
-CHANGELOG = """Abridged is back! Neoforge/Forge versions will return as well later.
-
-- Updated the mod to Fabric 1.21.1 and 1.21.7, while maintaining support for 1.20.1.
-- Added bridges over valleys that cross both land and water.
-- Added two new bridge variants: Fancy Oak and Tuff. Tuff is only present on 1.21.x.
-- Overhauled the bridge spawning system internals. Locating bridges should be significantly faster now.
-- Added the ability to add new bridge variants with a datapack, tutorial soon™️.
+CHANGELOG = """
+- Updated to 1.21.9.
 """
 UPLOAD_VERSIONS = [
-    ("fabric", "1.20.1"),
+    #("fabric", "1.20.1"),
     #("forge", "1.20.1"),
-    ("fabric", "1.21.1"),
+    #("fabric", "1.21.1"),
     #("neoforge", "1.21.1"),
-    ("fabric", "1.21.7"),
-    #("neoforge", "1.21.7"),
+    ("fabric", "1.21.9"),
+    ("neoforge", "1.21.9"),
 ]
 
 MODRINTH_ID = "tb5O1ssC"
@@ -42,7 +37,7 @@ CURSEFORGE_URL = f"https://minecraft.curseforge.com/api/v1/projects/{CURSEFORGE_
 CURSEFORGE_GAME_VERSIONS = {
     "1.20.1": [9990],
     "1.21.1": [11779],
-    "1.21.7": [13506]
+    "1.21.9": [13927],
 }
 CURSEFORGE_LOADERS = {
     "fabric": 7499,

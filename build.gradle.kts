@@ -1,9 +1,6 @@
-import earth.terrarium.cloche.api.metadata.ModMetadata
-
 plugins {
     kotlin("jvm") version "2.1.0"
-    id("earth.terrarium.cloche") version "0.11.4"
-    //id("net.msrandom.classextensions") version "1.0.11"
+    id("earth.terrarium.cloche") version "0.13.6"
 }
 
 repositories {
@@ -46,7 +43,7 @@ cloche {
     }
     val shared120 = common("shared:1.20") {}
     val shared121 = common("shared:1.21") {}
-    val shared1217 = common("shared:1.21.7") {}
+    val shared1219 = common("shared:1.21.9") {}
 
     fabric("fabric:1.20.1") {
         dependsOn(shared120)
@@ -115,16 +112,16 @@ cloche {
         }
     }
 
-    fabric("fabric:1.21.7") {
-        dependsOn(shared1217)
+    fabric("fabric:1.21.9") {
+        dependsOn(shared1219)
 
-        loaderVersion = "0.16.13"
-        minecraftVersion = "1.21.7"
+        loaderVersion = "0.17.2"
+        minecraftVersion = "1.21.9"
         mixins.from(file("src/common/main/abridged.mixins.json"))
 
         dependencies {
-            fabricApi("0.128.1")
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-fabric-1.21.6")
+            fabricApi("0.134.0")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.5.0-fabric-1.21.9")
         }
 
         includedClient()
@@ -177,7 +174,7 @@ cloche {
     neoforge("neoforge:1.21.1") {
         dependsOn(shared121)
 
-        loaderVersion = "21.1.26"
+        loaderVersion = "21.1.206"
         minecraftVersion = "1.21.1"
 
         dependencies {
@@ -200,14 +197,14 @@ cloche {
         }
     }
 
-    neoforge("neoforge:1.21.7") {
-        dependsOn(shared1217)
+    neoforge("neoforge:1.21.9") {
+        dependsOn(shared1219)
 
-        loaderVersion = "21.7.1-beta"
-        minecraftVersion = "1.21.7"
+        loaderVersion = "21.9.11-beta"
+        minecraftVersion = "1.21.9"
 
         dependencies {
-            modRuntimeOnly("maven.modrinth:lithostitched:1.4.11-neoforge-1.21.6")
+            modRuntimeOnly("maven.modrinth:lithostitched:1.5.0-neoforge-1.21.9")
         }
 
         runs {
